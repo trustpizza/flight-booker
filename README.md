@@ -1,12 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is a proof of concept for a flight booker.  Using this app, one should be able to 
+  1. Enter desired dates/airports and click "Search"
+  2. Choose from a list of available flights
+  3. Enter passenger information for all passengers
+  4. Enter billing information (fake billing info please)
 
 Things you may want to cover:
 
 * Ruby version
-
+  3.1.2p20 
 * System dependencies
 
 * Configuration
