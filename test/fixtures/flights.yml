@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dep_time: 2022-12-08 14:57:01
+  dep_date: 2022-12-08
+  origin_id: 1
+  destination_id: 1
+  duration: 1
+
+two:
+  dep_time: 2022-12-08 14:57:01
+  dep_date: 2022-12-08
+  origin_id: 1
+  destination_id: 1
+  duration: 1
