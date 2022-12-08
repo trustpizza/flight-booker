@@ -4,6 +4,6 @@ class Flight < ApplicationRecord
                                inverse_of: :departing_flights
   
   belongs_to :departure_airport, class_name: 'Airport',
-                                 foreign_key: :origin_id,
+                                 foreign_key: :destination_id,
                                  inverse_of: :arriving_flights
 end
