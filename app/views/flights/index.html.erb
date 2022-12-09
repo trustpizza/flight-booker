@@ -1,7 +1,2 @@
 <%= render 'search', flight: @flight %>
-<% @flights.each do |f| %>
-  <%= f.dep_date %> <br>
-  <%= f.dep_time %> <br>
-  <%= f.departure_airport.code %> <br>
-  <%= f.arrival_airport.code %> <br>
-<% end %> 
+<%= render 'results'%>
