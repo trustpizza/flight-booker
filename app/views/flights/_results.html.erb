@@ -5,7 +5,7 @@
   <%= form_with url:'/bookings/new', method: :get do |form| %>
     <%= form.label :flight, 'Available Flight Departure Times' %>
     <%= form.collection_radio_buttons :flight_id, @flights, :id, :display_depart_time, { include_blank: 'Select a Flight' }, required: true %>
-    <%= form.hidden_field :num_tickets, value: params[:passengers] %>
+    <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
     <%= form.submit "Book this flight!" %>
   <% end %>
 <% end %>

@@ -4,7 +4,7 @@
   at <%= @flight.display_depart_time %> on <%= @flight.dep_date%>
 </p>
 
-<%= params%>
+<%= params %>
 
 <%= form_with model: @booking, method: :post do |form| %>
   <% if @booking.errors.any? %>
