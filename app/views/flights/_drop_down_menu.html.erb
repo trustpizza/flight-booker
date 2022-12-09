@@ -1,5 +1,0 @@
-<% if flights %>
-  <% form_with model: @flight_names do |form| %>
-    <%= form.collection_select :destination_id, flight_names.order(:id), :id, :code %>
-  <% end %>
-<% end %>
