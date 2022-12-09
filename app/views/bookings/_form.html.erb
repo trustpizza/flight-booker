@@ -17,15 +17,23 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :flight_id, value: @flight.id %>
-    <%= form.fields_for :passengers do |sub| %>
+  <%= form.fields_for :passengers do |sub| %>
       <fieldset>
         <legend>Passenger #<%= sub.index.to_i + 1 %></legend>
         <%= sub.label :name %>
-        <%= sub.text_field :name %>
+        <%= sub.text_field :name,
+                            required: true,
+                            placeholder: 'John Smith' %>
         <%= sub.label :email%>
-        <%= sub.email_field :email%>
+        <%= sub.email_field :email,
+                            required: true,
+                            placeholder: 'email@email.com'%>
       </fieldset>
+
     <% end %>
-  <%= form.submit %>
+  <%= form.submit 'Submit Booking'%>
+
 <% end %>
+
+<%= @flight %>
+<%= params[:num_tickets] %>
