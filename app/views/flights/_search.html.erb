@@ -1,0 +1,9 @@
+<%= form_with url: flights_path, method: :get do |form| %>
+
+  <div class="search-form">
+    <%= form.label :q, 'Search Flights:' %>
+    <%= form.search_field :q %>
+    <%= form.submit "Search" %>
+  </div>
+
+<% end %>
