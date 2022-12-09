@@ -1,10 +1,7 @@
-<% @flights.each do |f| %>
-  <%= f.dep_date %> <br>
-  <%= f.dep_time %> <br>
-  <%= f.departure_airport.code %> <br>
-  <%= f.arrival_airport.code %> <br>
-<% end %> 
 
-<%= form_with url: flights_path, method: :get do |form| %>
-  <%= form.collection_radio_buttons :flight, @flights.order(:dep_date), :id, :departure_airport %>
+<%= form_with url:'/bookings/new', method: :get do |form| %>
+  <%= form.label :flight, 'Departures Available' %>
+  <%= form.collection_radio_buttons :flight_id, @flights, :id, :display_depart_time, { include_blank: 'Select a Flight' }, required: true %>
+  <%= form.hidden_field :num_tickets, value: params[:passengers] %>
+  <%= form.submit "Book this flight!" %>
 <% end %>
