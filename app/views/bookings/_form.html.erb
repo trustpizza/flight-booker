@@ -1,5 +1,24 @@
 <p> Flight <%= @flight.id %> <br>
   <%= @flight.departure_airport.code %> 
-  to <%= @flight.arrival_airport.code %> 
+  to <%= @flight.arrival_airport.code %> departing
   at <%= @flight.display_depart_time %> on <%= @flight.dep_date%>
 </p>
+
+<%= params%>
+
+<%= form_with model: @booking, method: :post do |form| %>
+  <% if @booking.errors.any? %>
+    <div>
+      <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
+    </div>
+
+    <ul>
+      <% @booking.errors.each do |error| %>
+        <li><%=error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+
+<% end %>
