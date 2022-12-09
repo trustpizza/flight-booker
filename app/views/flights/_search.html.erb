@@ -1,12 +1,16 @@
-<%= form_with url: flights_path, method: :get do |form| %>
-
-  <div class="search-form">
-    <%= form.label :q, 'Search Flights:' %>
-    <%= form.search_field :q %>
-    <%= form.submit "Search Flights" %>
-  </div>
 <%= form_with url: flights_path, method: :get do |f| %>
- <%= f.label 'Where from?', class: 'label' %>
- <%= f.select(:departure_airport, Airport.city, selected: @departure_airport, include_blank: 'Depart') %>
-<% end %>
+
+    <%= f.label 'Where from?', class: :label %>
+    <%= f.select(:departure_airport, Airport.city, selected: @departure_airport, include_blank: 'Depart') %>
+
+    <%= f.label 'Where to?', class: :label %>
+    <%= f.select(:arrival_airport, Airport.city, selected: @arrival_airport, include_blank: 'Arrive') %>
+
+    <%= f.label 'Dates', class: :label %>
+    <%= f.select(:dep_date, (Date.today..1.month.from_now), selected: @dep_time, include_blank: 'Select Date')%>
+
+    <%= f.label 'How many passengers?', class: :label %>
+    <%= f.select :num_passengers, (1..4), selected: params[:num_passengers]%>
+
+    <%= f.submit 'Search' %>
 <% end %>
