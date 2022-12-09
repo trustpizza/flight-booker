@@ -1,1 +1,5 @@
-<p> <%= @flight %> </p>
+<p> Flight <%= @flight.id %> <br>
+  <%= @flight.departure_airport.code %> 
+  to <%= @flight.arrival_airport.code %> 
+  at <%= @flight.display_depart_time %> on <%= @flight.dep_date%>
+</p>
