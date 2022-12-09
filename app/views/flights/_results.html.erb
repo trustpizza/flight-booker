@@ -4,3 +4,7 @@
   <%= f.departure_airport.code %> <br>
   <%= f.arrival_airport.code %> <br>
 <% end %> 
+
+<%= form_with url: flights_path, method: :get do |form| %>
+  <%= form.collection_radio_buttons :flight, @flights.order(:dep_date), :id, :departure_airport %>
+<% end %>
