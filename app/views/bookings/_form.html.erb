@@ -4,21 +4,28 @@
   at <%= @flight.display_depart_time %> on <%= @flight.dep_date%>
 </p>
 
-<%= params %>
-
 <%= form_with model: @booking, method: :post do |form| %>
   <% if @booking.errors.any? %>
     <div>
       <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
-    </div>
 
-    <ul>
-      <% @booking.errors.each do |error| %>
-        <li><%=error.full_message %></li>
-      <% end %>
-    </ul>
+      <ul>
+        <% @booking.errors.each do |error| %>
+          <li><%=error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
   <%= form.hidden_field :flight_id, value: @flight.id %>
-
+    <%= form.fields_for :passengers do |sub| %>
+      <fieldset>
+        <legend>Passenger #<%= sub.index.to_i + 1 %></legend>
+        <%= sub.label :name %>
+        <%= sub.text_field :name %>
+        <%= sub.label :email%>
+        <%= sub.email_field :email%>
+      </fieldset>
+    <% end %>
+  <%= form.submit %>
 <% end %>
