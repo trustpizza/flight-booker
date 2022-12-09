@@ -17,12 +17,15 @@ airports[3] = Airport.find_or_create_by({code: 'BOS'})
 airports[4] = Airport.find_or_create_by({code: 'ORD'})
 airports[5] = Airport.find_or_create_by({code: 'JFK'})
 
-flights = Flight.create([{dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]}, {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]},
+flights = Flight.create([{dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]}, 
+  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]},
   {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[2], arrival_airport: airports[3]},
   {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[4], arrival_airport: airports[5]}, 
-  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[1], arrival_airport: airports[0]}, {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]},
+  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[1], arrival_airport: airports[0]}, 
+  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[0], arrival_airport: airports[1]},
   {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[3], arrival_airport: airports[2]},
-  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[5], arrival_airport: airports[4]}])
+  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[5], arrival_airport: airports[4]},
+  {dep_time: Time.now, dep_date: Date.today, duration: 120, departure_airport: airports[3], arrival_airport: airports[0]}])
 # Flight.create({})
 # Flight.create({})
 # Flight.create({})

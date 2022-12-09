@@ -5,7 +5,10 @@ class FlightsController < ApplicationController
     @dep_date = params[:dep_date]
     @num_passengers = params[:num_passengers]
 
-    @flights = Flight.all
+    @flights = Flight.where(
+      destination_id: Airport.where(code: @departure_airport),
+      origin_id: Airport.where(code: @arrival_airport)
+    ).order(:dep_date)
   end
 
 end
