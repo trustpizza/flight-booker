@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root "flights#index"
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :flights
 end
