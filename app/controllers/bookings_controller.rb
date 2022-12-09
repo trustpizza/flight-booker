@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def new
-    @flight = Flight.includes(:origin_id, :destination_id).find(params[:flight_id])
+    @flight = Flight.find(params[:flight_id])
     @booking = @flight.bookings.build
     params[:num_passengers].to_i.times { @booking.passengers.build }
   end
