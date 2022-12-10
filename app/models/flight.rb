@@ -6,6 +6,6 @@ class Flight < ApplicationRecord
   has_many :passengers, through: :bookings
 
   def display_depart_time
-    dep_time.strftime('%r')
+    "#{dep_time.strftime('%r')} on #{dep_date}"
   end
 end
