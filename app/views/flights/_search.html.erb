@@ -1,18 +1,24 @@
+<div class='welcome'>Welcome to Axel Airlines! </div>
+
 <div class="form" >
     <%= form_with url: flights_path, method: :get do |f| %>
+        <div class="form-section flight">
+            <%= f.label 'Where from?', class: :label %>
+            <%= f.select(:departure_airport, Airport.city, selected: @departure_airport, include_blank: 'Depart') %>
+        </div>
+         <div class="form-section flight">
+            <%= f.label 'Where to?', class: :label %>
+            <%= f.select(:arrival_airport, Airport.city, selected: @arrival_airport, include_blank: 'Arrive') %>
+        </div>
+        <div class="form-section flight">
+            <%= f.label 'Dates', class: :label %>
+            <%= f.select(:dep_date, (Date.today..1.month.from_now), selected: @dep_time, include_blank: 'Select Date')%>
+        </div>    
 
-        <%= f.label 'Where from?', class: :label %>
-        <%= f.select(:departure_airport, Airport.city, selected: @departure_airport, include_blank: 'Depart') %>
-
-        <%= f.label 'Where to?', class: :label %>
-        <%= f.select(:arrival_airport, Airport.city, selected: @arrival_airport, include_blank: 'Arrive') %>
-
-        <%= f.label 'Dates', class: :label %>
-        <%= f.select(:dep_date, (Date.today..1.month.from_now), selected: @dep_time, include_blank: 'Select Date')%>
-
-        <%= f.label 'How many passengers?', class: :label %>
-        <%= f.select :num_passengers, (1..4), selected: params[:num_passengers]%>
-
+        <div class="form-section flight">
+            <%= f.label 'How many passengers?', class: :label %>
+            <%= f.select :num_passengers, (1..4), selected: params[:num_passengers]%>
+        </div>
         <%= f.submit 'Search' %>
     <% end %>
 </div>

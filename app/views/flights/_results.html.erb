@@ -3,6 +3,15 @@
     Sorry, we couldn't find flights during those times
   <% else %>
     <%= form_with url:'/bookings/new', method: :get do |form| %>
+      <div class="form-section flight">
+      
+      </div>
+      <div class="form-section flight">
+      
+      </div>
+      <div class="form-section flight">
+      
+      </div>
       <%= form.label :flight, 'Available Flight Departure Times' %>
       <%= form.collection_radio_buttons :flight_id, @flights, :id, :display_depart_time, { include_blank: 'Select a Flight' }, required: true %>
       <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
