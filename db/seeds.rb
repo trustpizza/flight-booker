@@ -5,9 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Airport.delete_all
-Flight.delete_all
-
 airports = []
 
 airports[0] = Airport.find_or_create_by({code: 'SFO'})
@@ -104,9 +101,4 @@ flights = Flight.create([{dep_time: Time.now, dep_date: Date.today, duration: 12
   {dep_time: Time.now, dep_date: Date.today + 13, duration: 130, departure_airport: airports[5], arrival_airport: airports[3]}
   ]
 )
-# Flight.create({})
-# Flight.create({})
-# Flight.create({})
-# Flight.create({})
-
   
