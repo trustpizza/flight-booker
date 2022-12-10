@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-
+    
     return if @booking
     flash[:alert] = 'Booking does not exist'
 

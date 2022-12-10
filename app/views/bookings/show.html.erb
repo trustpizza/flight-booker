@@ -1,4 +1,18 @@
-<h1></h1>
-<p>
-<%= params %>
+<p> Flight <%= @booking.flight_id %> <br>
+  <%= @booking.flight.departure_airport.code %> 
+  to <%= @booking.flight.arrival_airport.code %> departing <br>
+  at <%= @booking.flight.display_depart_time %> on <%= @booking.flight.dep_date%>
 </p>
+<p>
+Passengers:
+  <% @booking.passengers.each do |passenger| %>
+  <ul>
+    <li> <%= passenger.name %> </li>
+    <li> <%= passenger.email %></li>
+  </ul>
+  <% end %>
+
+</ul>
+</p>
+
+<%= link_to 'Book Another Flight', root_url %>
