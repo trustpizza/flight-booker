@@ -5,15 +5,16 @@ class FlightsController < ApplicationController
     @dep_date = params[:dep_date]
     @num_passengers = params[:num_passengers]
 
-    @flights = Flight.where(
+    @flights = find_flights
+  end
+
+  private 
+
+  def find_flights
+    Flight.where(
       destination_id: Airport.where(code: @departure_airport),
       origin_id: Airport.where(code: @arrival_airport),
-      dep_date: (@dep_date)
+      dep_date: @dep_date
     ).order(:dep_date)
-
-    @all_flights = Flight.where(
-      destination_id: Airport.where(code: @departure_airport),
-      origin_id: Airport.where(code: @arrival_airport)
-    )
   end
 end
