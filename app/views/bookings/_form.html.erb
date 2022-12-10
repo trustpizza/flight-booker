@@ -17,6 +17,7 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :flight_id, value: @flight.id %>
   <%= form.fields_for :passengers do |sub| %>
       <fieldset>
         <legend>Passenger #<%= sub.index.to_i + 1 %></legend>
@@ -29,7 +30,6 @@
                             required: true,
                             placeholder: 'email@email.com'%>
       </fieldset>
-
     <% end %>
   <%= form.submit 'Submit Booking'%>
 
