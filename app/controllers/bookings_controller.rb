@@ -16,6 +16,15 @@ class BookingsController < ApplicationController
     end 
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+
+    return if @booking
+    flash[:alert] = 'Booking does not exist'
+
+    redirect_to root_url
+  end
+
   private
 
   def booking_params
