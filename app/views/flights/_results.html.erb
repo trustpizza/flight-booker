@@ -4,7 +4,7 @@
   <% elsif  @flights.empty? && @all_flights %>
     We found some flights, but not during those times
     <%= form_with url:'/bookings/new', method: :get do |form| %>
-    <%= form.label :flight, 'Available Flight Departure Times' %>
+    <%= form.label :flight, 'Available Flights' %>
     <%= form.collection_radio_buttons :flight_id, @all_flights, :id, :display_depart_time, { include_blank: 'Select a Flight' }, required: true %>
     <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
     <%= form.submit "Book this flight!" %>
