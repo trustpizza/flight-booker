@@ -7,8 +7,13 @@ class FlightsController < ApplicationController
 
     @flights = Flight.where(
       destination_id: Airport.where(code: @departure_airport),
-      origin_id: Airport.where(code: @arrival_airport)
+      origin_id: Airport.where(code: @arrival_airport),
+      dep_date: (@dep_date)
     ).order(:dep_date)
-  end
 
+    @all_flights = Flight.where(
+      destination_id: Airport.where(code: @departure_airport),
+      origin_id: Airport.where(code: @arrival_airport)
+    )
+  end
 end
