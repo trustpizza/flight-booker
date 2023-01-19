@@ -7,17 +7,17 @@ class BookingsController < ApplicationController
   end
 
   def create
-    #debugger
     @booking = Booking.new(passenger_params)
     @flights = find_flights(params[:booking][:booking_option])
     create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
 
     if @booking.save
       flash[:notice] = "Check your email for your booking confirmation information!"
-      PassengerMailer.with(booking: @booking).thank_you_email.deliver_now
+      #PassengerMailer.with(booking: @booking).thank_you_email.deliver_now # Needs to create
       redirect_to @booking
     else
       render :new
+      flash[:notice] = "Error"
     end
   end
 
@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   private
 
   def passenger_params
-    params.require(:booking).permit(passengers_attributes: [:name, :email])
+    params.require(:booking).permit(passengers_attributes: %i[name email])
   end
 
   def find_flights(option)
@@ -43,7 +43,9 @@ class BookingsController < ApplicationController
 
   def create_booking_seats(flights, passenger_count)
     passenger_count.times do
-      flights.each { |flight| @booking.seats.build(flight: flight) }
+    flights.each { |flight| @booking.seats.build(flight: flight)
+      debugger
+    }
     end
   end
 end
