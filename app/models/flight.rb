@@ -11,8 +11,8 @@ class Flight < ApplicationRecord
   has_many :passengers, through: :bookings
 
   def flight_details
-    departure_time = 
-    arrival_time = 
+    departure_time = readable_departure
+    arrival_time = readable_arrival
     "#{departure_time} depart from #{origin_airport.code} and arrive at #{arrival_time} at #{destination_airport.code}"
   end
 
