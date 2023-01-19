@@ -3,6 +3,37 @@ class FlightGenerator
     @day = day
   end
 
+  def start 
+    pairs = pair_airports
+    pairs.each do |pair|
+      find_or_create_flights(pair)
+    end
+  end
+
+  private
+
+  def find_or_create_flights(pair)
+    origin = Airport.find_by(code: pair[0])
+    destination = Airport.find_by(code: pair[1])
+    flights = Flight.where(origin_airport: origin, destination_airport: destination, departure_date: @day)
+    return if flights.count.positive?
+
+    duration = find_duration(pair)
+    create_flights(origin, destination, duration)
+  end
+
+  def create_flights(origin, destination, duration)
+    departure_times = [morning, afternoon, evening]
+    departure_times.each do |time|
+      Flight.create(origin_airport: origin,
+                    destination_airport: destination,
+                    departure_date: @day,
+                    departure_time: departure_time,
+                    duration: duration
+      )
+    end
+  end
+
   def flight_duration
     {
       LAX: {BOS: 330, ORD: 245, JFK: 320, ATL: 250, DFW: 180, DEN: 145, MCO: 280, PHX: 85, MSP: 215, LGA: 418},
@@ -18,6 +49,9 @@ class FlightGenerator
       LGA: {LAX: 418, BOS: 85, ORD: 130, JFK: 31, ATL: 130, DFW: 195, DEN: 220, MCO: 185, PHX: 240, MSP: 165}
     }
   end
+
+  def find_duration(airports)
+    flight_duration[airports[0].to_sym][airports[1].to_sym]
 
   def pair_airports
     flight_duration.keys.map(&:to_s).permutations(2)
