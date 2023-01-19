@@ -1,36 +1,35 @@
-<p> Flight <%= @flight.id %> <br>
-  <%= @flight.departure_airport.code %> 
-  to <%= @flight.arrival_airport.code %> departing
-  at <%= @flight.display_depart_time %> on <%= @flight.dep_date%>
-</p>
-
 <%= form_with model: @booking, method: :post do |form| %>
   <% if @booking.errors.any? %>
     <div>
-      <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
+      <h2 class="error-title"> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
 
       <ul>
         <% @booking.errors.each do |error| %>
-          <li><%=error.full_message %></li>
+          <li class="error"><%=error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <%= form.hidden_field :flight_id, value: @flight.id %>
-  <%= form.fields_for :passengers do |sub| %>
-      <fieldset>
-        <legend>Passenger #<%= sub.index.to_i + 1 %></legend>
-        <%= sub.label :name %>
-        <%= sub.text_field :name,
-                            required: true,
-                            placeholder: 'John Smith' %>
-        <%= sub.label :email%>
-        <%= sub.email_field :email,
+  <%= f.hidden_field :booking_option, :value => params[:booking_option] %>
+  <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
+    
+  <%= form.fields_for :passengers do |passenger| %>
+    <div class="new-passenger">
+      <div class="form-field">
+        <%= passenger.label :name %>
+        <%= passenger.text_field :name,
+                                 required: true,
+                                 placeholder: 'John Smith'
+                                 %>
+      </div>
+      <div class="form-field">
+        <%= passenger.label :email%>
+        <%= passenger.email_field :email,
                             required: true,
                             placeholder: 'email@email.com'%>
-      </fieldset>
+      </div>
+    </div>
     <% end %>
-  <%= form.submit 'Submit Booking'%>
-
+    
+  <div class="form-button"><%= form.submit 'Create Booking'%></div>
 <% end %>
