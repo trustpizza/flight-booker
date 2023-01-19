@@ -1,0 +1,14 @@
+<div class="results">
+  <p>Departure:
+  <%= flight.readable_departure %>
+  on <%= flight.readable_date%>
+  from <%= flight.origin_airport.code %>
+  </p>
+
+  <p>
+      Arrival:
+      <%= flight.readable_arrival %>
+      to <%- flight.destination_airport.code %>
+  </p>
+
+</div>

@@ -1,18 +1,28 @@
-<p> Flight <%= @booking.flight_id %> <br>
-  <%= @booking.flight.departure_airport.code %> 
-  to <%= @booking.flight.arrival_airport.code %> departing <br>
-  at <%= @booking.flight.display_depart_time %> on <%= @booking.flight.dep_date%>
-</p>
-<p>
-Passengers:
-  <% @booking.passengers.each do |passenger| %>
-  <ul>
-    <li> <%= passenger.name %> </li>
-    <li> <%= passenger.email %></li>
-  </ul>
-  <% end %>
+<div class="booking-section">
+  <h1 class="booking-title">
+    <h2 class="subtitle">
+      <%= pluralize(@booking.passengers.count, "Passenger") %>
+    </h2>
+  </h1>
 
-</ul>
-</p>
+  <div class="booking-summary">
+    <% @booking.passengers.each do |passenger| %>
+      <p>
+        <%= passenger.name %>
+      </p>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'Book Another Flight', root_url %>
+<div class="booking-secti0n">
+  <div class="booking-title">
+    <p class="subtitle">
+      <%= pluralize(@booking.flights.distinct.count, "Flight") %>:
+    </p>
+  </div>
+  <div class="bookingsummary">
+    <% @booking.flights.distinct.each do |flight| %>
+      <%= render partial: 'summary', locals: { flight: flight } %>
+    <% end %>
+  </div>
+</div>

@@ -1,21 +1,29 @@
-<div class="results">
-  <% if @flights.empty?  %>
-    Sorry, we couldn't find flights during those times
-  <% else %>
-    <%= form_with url:'/bookings/new', method: :get do |form| %>
-      <div class="form-section flight">
-      
+<%= form_with url: "bookings/new/", method: "get" do |f| %>
+  <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
+
+    <div class="radio-buttons">
+      <% @booking_options.each do |booking| %>
+        <div class="radio-btn">
+          <%= f.radio_button :booking_option, booking.map(&:id), { required: true } %>
+        </div>
+        <div class="btn-label">
+          <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
+            <% booking.each_with_index do |flight, index| %>
+              <% if index.positive? %>
+                <strong>plus layover</strong> with
+              <% end %>
+              <%= flight.details %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @booking_options.empty? %>
+      <p>Sorry, no flights match your search criteria. Please choose a date within the next 30 days.</p>
+    <% else %>
+      <div class="form-button">
+        <%= f.submit "Book Flight" %>
       </div>
-      <div class="form-section flight">
-      
-      </div>
-      <div class="form-section flight">
-      
-      </div>
-      <%= form.label :flight, 'Available Flight Departure Times' %>
-      <%= form.collection_radio_buttons :flight_id, @flights, :id, :display_depart_time, { include_blank: 'Select a Flight' }, required: true %>
-      <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
-      <%= form.submit "Book this flight!" %>
     <% end %>
-  <% end %>
-</div>
+<% end %>
