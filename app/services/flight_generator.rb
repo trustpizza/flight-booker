@@ -18,4 +18,16 @@ class FlightGenerator
       LGA: {LAX: , BOS: , ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: }
     }
   end
+
+  def morning
+    Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :morning)
+  end
+
+  def afternoon
+    Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon)
+  end
+
+  def evening
+    Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :evening)
+  end
 end
