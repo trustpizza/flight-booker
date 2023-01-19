@@ -1,13 +1,17 @@
-<%= form_with url: "bookings/new/", method: "get" do |f| %>
+<%= form_with model: @booking, method: "get" do |f| %>
   <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
 
     <div class="radio-buttons">
       <% @booking_options.each do |booking| %>
         <div class="radio-btn">
-          <%= f.radio_button :booking_option, booking %>
+          <%= f.radio_button :booking_option, booking.map(&:id) %>
         </div>
         <div class="btn-label">
           <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
+            <% booking.each do |flight| %>
+              <%= flight.flight_details %>
+              <%= flight.id %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -20,4 +24,5 @@
         <%= f.submit "Book Flight" %>
       </div>
     <% end %>
+    <%= params %>
 <% end %>
