@@ -1,23 +1,22 @@
 class BookingsController < ApplicationController
   def new
-    @flight = Flight.find(params[:flight_id])
-    @booking = @flight.bookings.build
-    @passengers = params[:num_tickets].to_i.times { @booking.passengers.build }
+    @booking = Booking.new
+    @flights = find_flights(params[:booking_option])
+    passenger_count = params[:passenger_count].to_i
+    passenger_count.times { @booking.passengers.build }
   end
 
   def create
-    @flight = Flight.find(booking_params[:flight_id])
-    @booking = @flight.bookings.new(booking_params)
+    @booking = Booking.new(passenger_params)
+    @flights = find_flights(params[:booking][:booking_option])
+    create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
 
-    respond_to do |format|
-      if @booking.save
-        @booking.passengers.each do |passenger|
-          PassengerMailer.with(passenger: passenger).confirmation_email.deliver_now
-        end
-        format.html { redirect_to booking_url(@booking) }          
-      else
-        format.html {render :new, status: unprocessable_entity}
-      end 
+    if @booking.save
+      flash[:notice] = "Check your email for your booking confirmation information!"
+      PassengerMailer.with(booking: @booking).thank_you_email.deliver_now
+      redirect_to @booking
+    else
+      render :new
     end
   end
 
@@ -25,7 +24,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     
     return if @booking
-    flash[:alert] = 'Booking does not exist'
+    flash[:alert] = 'Sorry, it looks like booking does not exist'
 
     redirect_to root_url
   end
@@ -33,6 +32,17 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, :num_passengers,  passengers_attributes: [:name, :email] )
+    params.require(:booking).permit(passengers_attributes: %i[name email])
+  end
+
+  def find_flights(option)
+    flight_numbers = option.split
+    flight_numbers.collect { |num| Flight.find_by(id: num) }
+  end
+
+  def create_booking_seats(flights, passenger_count)
+    passenger_count.times do
+      flights.each { |flight| @booking.seats.build(flight: flight) }
+    end
   end
 end
