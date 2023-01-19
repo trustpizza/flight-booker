@@ -4,7 +4,7 @@
   </h1>
 
   <% @flights.each do |flight|%>
-    <%= render partial: 'flight_summary', locals: { flight: flight }%>
+    <%= render 'summary', flight: flight %>
   <% end %>
 
   <h1 class="sub-title">Add Passenger</h1>

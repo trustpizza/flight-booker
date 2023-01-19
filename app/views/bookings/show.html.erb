@@ -22,7 +22,7 @@
   </div>
   <div class="bookingsummary">
     <% @booking.flights.distinct.each do |flight| %>
-      <%= render partial: 'summary', locals: { flight: flight } %>
+      <%= render'summary', locals: { flight: flight } %>
     <% end %>
   </div>
 </div>
