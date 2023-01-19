@@ -1,7 +1,8 @@
 class CreateBookings < ActiveRecord::Migration[7.0]
   def change
     create_table :bookings do |t|
-      t.belongs_to :flight, null: false, foreign_key: true
+      t.bigint :flight_id
+      t.bigint :passenger_id
 
       t.timestamps
     end

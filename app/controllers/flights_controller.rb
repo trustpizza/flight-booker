@@ -1,11 +1,9 @@
 class FlightsController < ApplicationController
   def index
-    @departure_airport = params[:departure_airport]
-    @arrival_airport = params[:arrival_airport]
-    @dep_date = params[:dep_date]
-    @num_passengers = params[:num_passengers]
+    @airport_options = Airport.all.map { |aiport| [airport.location, airport.id] }
+    return if search_params.empty?
 
-    @flights = find_flights
+    @booking_options = find_booking_options
   end
 
   private 
