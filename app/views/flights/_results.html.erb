@@ -4,16 +4,10 @@
     <div class="radio-buttons">
       <% @booking_options.each do |booking| %>
         <div class="radio-btn">
-          <%= f.radio_button :booking_option, booking.map(&:id) %>
+          <%= f.radio_button :booking_option, booking %>
         </div>
         <div class="btn-label">
           <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
-            <% booking.each_with_index do |flight, index| %>
-              <% if index.positive? %>
-                <strong>plus layover</strong> with
-              <% end %>
-              <%= flight.details %>
-            <% end %>
           <% end %>
         </div>
       <% end %>

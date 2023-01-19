@@ -6,7 +6,7 @@ class BookingOptions
   end
 
   def find_flights 
-    direct_flights = find_flight(@origin, @destination, @date).collect {|flight| flight}
+    direct_flights = find_flight(@origin, @destination, @date).collect {|flight| [flight] }
   end
 
   private

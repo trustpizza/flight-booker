@@ -4,6 +4,7 @@ class FlightsController < ApplicationController
     return if search_params.empty?
 
     @booking_options = find_flights
+    debugger
   end
 
   private 
