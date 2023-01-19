@@ -8,6 +8,10 @@ class FlightsController < ApplicationController
 
   private 
 
+  def search_params
+    params.permit(:origin_id, :destination_id, :departure_date)
+  end
+
   def find_flights
     Flight.where(
       destination_id: Airport.where(code: @departure_airport),
