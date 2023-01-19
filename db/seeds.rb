@@ -19,11 +19,11 @@ Airport.find_or_create_by(code: "MSP",location: "Minneapolis, MN")
 Airport.find_or_create_by(code: "LGA",location: "Queens, NY")
 
 start = Time.zone.today
-finish = Time.zone.today + 365.days
+finish = Time.zone.today + 31.days
 
 (start..finish).each do |day|
   flight_generator = FlightGenerator.new(day)
-  flight_generator.call
+  flight_generator.start
 end
 
 ATL
