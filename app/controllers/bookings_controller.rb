@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    #debugger
     @booking = Booking.new(passenger_params)
     @flights = find_flights(params[:booking][:booking_option])
     create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
@@ -31,7 +32,7 @@ class BookingsController < ApplicationController
 
   private
 
-  def booking_params
+  def passenger_params
     params.require(:booking).permit(passengers_attributes: [:name, :email])
   end
 
