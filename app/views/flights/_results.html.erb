@@ -4,7 +4,7 @@
     <div class="radio-buttons">
       <% @booking_options.each do |booking| %>
         <div class="radio-btn">
-          <%= f.radio_button :booking_option, booking.map(&:id), { required: true } %>
+          <%= f.radio_button :booking_option, booking.map(&:id) %>
         </div>
         <div class="btn-label">
           <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>

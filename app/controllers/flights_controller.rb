@@ -1,9 +1,9 @@
 class FlightsController < ApplicationController
   def index
-    @airport_options = Airport.all.map { |aiport| [airport.location, airport.id] }
+    @airport_options = Airport.all.map { |airport| [airport.location, airport.id] }
     return if search_params.empty?
 
-    @booking_options = find_booking_options
+    @booking_options = find_flights
   end
 
   private 
@@ -13,10 +13,11 @@ class FlightsController < ApplicationController
   end
 
   def find_flights
-    Flight.where(
-      destination_id: Airport.where(code: @departure_airport),
-      origin_id: Airport.where(code: @arrival_airport),
-      dep_date: @dep_date
-    ).order(:dep_date)
+    if params[:origin_id] == params[:destination_id]
+      flash.now[:alert] = "Please choose two different origin and destination locations!"
+      render :index
+    else
+      BookingOptions.new(search_params).find_flights
+    end
   end
 end
