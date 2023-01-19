@@ -4,7 +4,6 @@ class BookingsController < ApplicationController
     @flights = find_flights(params[:booking_option])
     passenger_count = params[:passenger_count].to_i
     passenger_count.times { @booking.passengers.build }
-    #debugger
   end
 
   def create
@@ -12,15 +11,15 @@ class BookingsController < ApplicationController
     @flights = find_flights(params[:booking][:booking_option])
     create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
 
-    if @booking.save
-      flash[:notice] = "Check your email for your booking confirmation information!"
-      @booking.passengers.each do |passenger|
-        PassengerMailer.with(booking: @booking).confirmation_email(passenger).deliver_now # Needs to create
+    respond_to do |format|
+      if @booking.save 
+        @booking.passengers.each do |passenger|
+          PassengerMailer.with(passenger: passenger, booking: @booking).confirmation_email.deliver_now
+        end
+        format.html { redirect_to booking_url(@booking) }
+      else
+        format.html { render :new, status: unprocessable_entity }
       end
-      redirect_to @booking
-    else
-      render :new
-      flash[:notice] = "Error"
     end
   end
 

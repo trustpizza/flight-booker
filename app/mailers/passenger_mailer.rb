@@ -1,10 +1,11 @@
 class PassengerMailer < ApplicationMailer
   default from: 'notifications@email.com'
 
-  def confirmation_email(passenger)
-    #debugger
-    @passenger = passenger
+  def confirmation_email
     @booking = params[:booking]
-    mail(to: @booking.passengers.pluck(:email), subject: 'Booking Confirmation')
+    @booking.passengers.each do |passenger|
+      @passenger = passenger
+      mail(to: passenger.email, subject: 'Booking Confirmation')
+    end
   end
 end
