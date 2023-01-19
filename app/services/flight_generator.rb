@@ -5,7 +5,7 @@ class FlightGenerator
 
   def flight_duration
     {
-      LAX: {BOS: , ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: , LGA: },
+      LAX: {BOS: 330, ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: , LGA: },
       BOS: {LAX: , ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: , LGA: },
       ORD: {LAX: , BOS: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: , LGA: },
       JFK: {LAX: , BOS: , ORD: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: , LGA: },
@@ -17,6 +17,10 @@ class FlightGenerator
       MSP: {LAX: , BOS: , ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , LGA: },
       LGA: {LAX: , BOS: , ORD: , JFK: , ATL: , DFW: , DEN: , MCO: , PHX: , MSP: }
     }
+  end
+
+  def pair_airports
+    flight_duration.keys.map(&:to_s).permutations(2)
   end
 
   def morning
