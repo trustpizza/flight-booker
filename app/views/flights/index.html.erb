@@ -1,10 +1,12 @@
-<div>
+<div class="grid grid-cols-2 grow border-black border-solid border-2 rounded px-2">
   <%= render 'search_form' %>
 
   <div>
     <% if @booking_options %>
-      <p>Available Flights:</p>
-      <%= render 'results' %>
+      <div class="grid">
+        <p>Available Flights:</p>
+        <%= render 'results' %>
+      </div>
     <% else %>
       <p>No Available Flights</p>
     <% end %>
