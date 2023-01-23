@@ -1,14 +1,13 @@
-<div class="grid grid-cols-2 grow border-black border-solid border-2 rounded px-2">
+<div class="grid grid-rows-2 border-black border-solid border-2 rounded px-2">
   <%= render 'search_form' %>
 
-  <div>
+  <div class="flex">
     <% if @booking_options %>
       <div class="grid">
-        <p>Available Flights:</p>
         <%= render 'results' %>
       </div>
     <% else %>
-      <p>No Available Flights</p>
+      <h2 class="self-center text-center grow text-4xl">No Available Flights</h2>
     <% end %>
   </div>
 </div>

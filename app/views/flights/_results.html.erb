@@ -1,27 +1,29 @@
-<%= form_with url: "bookings/new/", method: "get" do |f| %>
+<%= form_with url: "bookings/new/", method: "get", class: "grid grow gap-0.5 px-2" do |f| %>
+  <h2 class="self-center text-xl font-bold">Available Flights: </h2>
+
   <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
 
-    <div>
       <% @booking_options.each do |booking| %>
-        <div>
-          <%= f.radio_button :booking_option, booking.map(&:id) %>
-        </div>
-        <div>
-          <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
-            <% booking.each do |flight| %>
-              <%= flight.flight_details %>
-              <%= flight.id %>
+        <div class="flex grow gap-4">
+          <div>
+            <%= f.radio_button :booking_option, booking.map(&:id), required: true %>
+          </div>
+          <div>
+            <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
+              <% booking.each do |flight| %>
+                <%= flight.flight_details %>
+                <%= flight.id %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       <% end %>
-    </div>
 
     <% if @booking_options.empty? %>
       <p>Sorry, no flights match your search criteria. Please choose a date within the next 30 days.</p>
     <% else %>
-      <div>
-        <%= f.submit "Book Flight" %>
+      <div class="flex justify-end items-center">
+        <%= f.submit "Book Flight", class: "bg-green-500 hover:bg-green-700 text-white font-bold py02 px-4 rounded border border-black" %>
       </div>
     <% end %>
 <% end %>
