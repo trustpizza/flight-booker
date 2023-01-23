@@ -1,11 +1,11 @@
 <%= form_with model: @booking, method: :post do |f| %>
   <% if @booking.errors.any? %>
     <div>
-      <h2 class="error-title"> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
+      <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
 
       <ul>
         <% @booking.errors.each do |error| %>
-          <li class="error"><%=error.full_message %></li>
+          <li><%=error.full_message %></li>
         <% end %>
       </ul>
     </div>
@@ -14,15 +14,15 @@
   <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
     
   <%= f.fields_for :passengers do |passenger| %>
-    <div class="new-passenger">
-      <div class="form-field">
+    <div>
+      <div>
         <%= passenger.label :name %>
         <%= passenger.text_field :name,
                                  required: true,
                                  placeholder: 'John Smith'
                                  %>
       </div>
-      <div class="form-field">
+      <div>
         <%= passenger.label :email%>
         <%= passenger.email_field :email,
                             required: true,
@@ -31,5 +31,5 @@
     </div>
     <% end %>
     
-  <div class="form-button"><%= f.submit 'Create Booking'%></div>
+  <div"><%= f.submit 'Create Booking'%></div>
 <% end %>

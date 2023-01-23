@@ -1,5 +1,5 @@
-<div class="new-booking">
-  <h1 class="flight-title">
+<div>
+  <h1>
     <%= pluralize(@flights.count, "Flight")%>
   </h1>
 
@@ -7,6 +7,6 @@
     <%= render 'summary', flight: flight %>
   <% end %>
 
-  <h1 class="sub-title">Add Passenger</h1>
+  <h1>Add Passenger</h1>
   <%= render 'form' %>
 </div>

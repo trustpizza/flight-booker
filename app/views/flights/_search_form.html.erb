@@ -1,26 +1,26 @@
 <%= form_with model: @flights, method: :get do |f| %>
-    <div class="form-field">
+    <div>
         <%= f.label "Origin" %>
         <%= f.select(:origin_id,
                  options_for_select(@airport_options, params[:origin_id]),
                  required: true ) %>    
     </div>
         
-    <div class="form-field">
+    <div>
         <%= f.label "Destination" %>
         <%= f.select(:destination_id,
                     options_for_select(@airport_options, params[:destination_id]),
                     required: true ) %>
     </div>
 
-    <div class="form-field">
+    <div>
         <%= f.label "Passengers" %>
         <%= f.select(:passenger_count,
                     options_for_select([1, 2, 3, 4], params[:passenger_count]),
                     required: true ) %>
     </div>
 
-    <div class="form-field">
+    <div>
         <%= f.label "Date" %>
         <%= f.date_field :departure_date,
                         value: params[:departure_date],
@@ -28,7 +28,7 @@
                         placeholder: "dd/mm/yyyy" %>
     </div>
 
-    <div class="form-button">
+    <div>
         <%= f.submit "Find Flights" %>
     </div>
 <% end %>

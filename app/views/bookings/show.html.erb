@@ -1,11 +1,11 @@
-<div class="booking-section">
-  <h1 class="booking-title">
-    <h2 class="subtitle">
+<div>
+  <h1>
+    <h2>
       <%= pluralize(@booking.passengers.count, "Passenger") %>
     </h2>
   </h1>
 
-  <div class="booking-summary">
+  <div>
     <% @booking.passengers.each do |passenger| %>
       <p>
         <%= passenger.name %>
@@ -14,13 +14,13 @@
   </div>
 </div>
 
-<div class="booking-secti0n">
-  <div class="booking-title">
-    <p class="subtitle">
+<div>
+  <div>
+    <p>
       <%= pluralize(@booking.flights.distinct.count, "Flight") %>:
     </p>
   </div>
-  <div class="bookingsummary">
+  <div>
     <% @booking.flights.distinct.each do |flight| %>
       <%= render 'summary', flight: flight  %>
     <% end %>

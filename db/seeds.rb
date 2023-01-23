@@ -25,11 +25,3 @@ finish = Time.zone.today + 31.days
   flight_generator = FlightGenerator.new(day)
   flight_generator.start
 end
-
-ATL
-DFW
-DEN
-MCO
-PHX
-MSP
-LGA

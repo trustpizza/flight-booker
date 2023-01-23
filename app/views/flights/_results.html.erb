@@ -1,12 +1,12 @@
 <%= form_with url: "bookings/new/", method: "get" do |f| %>
   <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
 
-    <div class="radio-buttons">
+    <div>
       <% @booking_options.each do |booking| %>
-        <div class="radio-btn">
+        <div>
           <%= f.radio_button :booking_option, booking.map(&:id) %>
         </div>
-        <div class="btn-label">
+        <div>
           <%= f.label(:booking_option, {for: "booking_option_#{booking.map(&:id).join("_")}"}) do %>
             <% booking.each do |flight| %>
               <%= flight.flight_details %>
@@ -20,7 +20,7 @@
     <% if @booking_options.empty? %>
       <p>Sorry, no flights match your search criteria. Please choose a date within the next 30 days.</p>
     <% else %>
-      <div class="form-button">
+      <div>
         <%= f.submit "Book Flight" %>
       </div>
     <% end %>

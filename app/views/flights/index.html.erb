@@ -1,12 +1,12 @@
-<div class="flights-container">
+<div>
   <%= render 'search_form' %>
 
-  <div class="search-results">
+  <div>
     <% if @booking_options %>
-      <p class="sub-title">Available Flights:</p>
+      <p>Available Flights:</p>
       <%= render 'results' %>
     <% else %>
-      <p class="sub-title">No Available Flights</p>
+      <p>No Available Flights</p>
     <% end %>
   </div>
 </div>
