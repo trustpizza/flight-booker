@@ -1,8 +1,4 @@
-<div>
-  <h1>
-    <%= pluralize(@flights.count, "Flight")%>
-  </h1>
-
+<div class="grow max-w-xl">
   <% @flights.each do |flight|%>
     <%= render 'summary', flight: flight %>
   <% end %>
