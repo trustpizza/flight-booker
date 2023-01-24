@@ -1,9 +1,9 @@
-<div class="grid grid-rows-2 border-black border-solid border-2 rounded px-2">
+<div class="grid grid-rows-2 border-black border-solid border-2 rounded px-2 p-4 w-3/5 gap-16">
   <%= render 'search_form' %>
 
   <div class="flex">
     <% if @booking_options %>
-      <div class="grid">
+      <div class="grid flex-grow">
         <%= render 'results' %>
       </div>
     <% else %>

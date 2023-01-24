@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
 
   def create_booking_seats(flights, passenger_count)
     passenger_count.times do
-    flights.each { |flight| @booking.seats.build(flight: flight)    }
+      flights.each { |flight| @booking.seats.build(flight: flight)    }
     end
   end
 end

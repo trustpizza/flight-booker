@@ -1,8 +1,7 @@
-<div class="grow max-w-xl">
+<div class="border-black border-solid border-2 rounded px-2 p-4 grid">
   <% @flights.each do |flight|%>
     <%= render 'summary', flight: flight %>
   <% end %>
 
-  <h1>Add Passenger</h1>
   <%= render 'form' %>
 </div>

@@ -1,7 +1,7 @@
-<div class="border">
+<div>
   <h1 class="self-center text-xl font-bold text-center"><%= "Flight #{flight.id} from #{flight.origin_airport.code} to #{flight.destination_airport.code}" %></h1>
   <div>
-    <p class="flex justify-between">
+    <p class="flex justify-between gap-16">
       <strong>Departure:</strong>
       <span>
         <%= flight.readable_departure %>
@@ -10,7 +10,7 @@
       </span>
     </p>
   
-    <p>
+    <p class="flex justify-between"x>
         <strong>Arrival:</strong>
         <span>
           <%= flight.readable_arrival %>

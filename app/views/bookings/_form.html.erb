@@ -1,35 +1,38 @@
-<%= form_with model: @booking, method: :post do |f| %>
-  <% if @booking.errors.any? %>
-    <div>
-      <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
-
-      <ul>
-        <% @booking.errors.each do |error| %>
-          <li><%=error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.hidden_field :booking_option, :value => params[:booking_option] %>
-  <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
-    
-  <%= f.fields_for :passengers do |passenger| %>
-    <div>
+<div class="self-end">
+  <h1 class=" text-xl font-bold">Add Passengers: </h1>
+  
+  <%= form_with model: @booking, method: :post, class:"flex flex-col gap-2" do |f| %>
+    <% if @booking.errors.any? %>
       <div>
-        <%= passenger.label :name %>
-        <%= passenger.text_field :name,
-                                 required: true,
-                                 placeholder: 'John Smith'
-                                 %>
+        <h2> <%= pluralize(@booking.errors.count, 'error' )%> blocked this booking from being saved:</h2>
+  
+        <ul>
+          <% @booking.errors.each do |error| %>
+            <li><%=error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
-      <div>
-        <%= passenger.label :email%>
-        <%= passenger.email_field :email,
-                            required: true,
-                            placeholder: 'email@email.com'%>
-      </div>
-    </div>
     <% end %>
-    
-  <div"><%= f.submit 'Create Booking'%></div>
-<% end %>
+    <%= f.hidden_field :booking_option, :value => params[:booking_option] %>
+    <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
+    <%= f.fields_for :passengers do |passenger| %>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col">
+          <%= passenger.label :name, "Name:", class: "text-l font-bold" %>
+          <%= passenger.text_field :name,
+                                   required: true,
+                                   placeholder: 'John Smith'
+                                   %>
+        </div>
+        <div class="flex flex-col">
+          <%= passenger.label :email, "Email:", class: "text-l font-bold"%>
+          <%= passenger.email_field :email,
+                              required: true,
+                              placeholder: 'email@email.com'%>
+        </div>
+      </div>
+      <% end %>
+  
+    <div class="flex self-end"><%= f.submit 'Create Booking', class: "bg-green-500 hover:bg-green-700 text-white font-bold py02 px-4 rounded border border-black" %></div>
+  <% end %>
+</div>
