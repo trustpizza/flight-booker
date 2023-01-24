@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(passenger_params)
     @flights = find_flights(params[:booking][:booking_option])
     create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
-    @url = bookings_path(@booking.id)
+    @url = bookings_path(@booking.id) 
 
     respond_to do |format|
       if @booking.save 
