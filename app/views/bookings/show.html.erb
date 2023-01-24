@@ -1,28 +1,25 @@
-<div>
-  <h1>
-    <h2>
-      <%= pluralize(@booking.passengers.count, "Passenger") %>
-    </h2>
-  </h1>
-
-  <div>
-    <% @booking.passengers.each do |passenger| %>
-      <p>
-        <%= passenger.name %>
-      </p>
-    <% end %>
-  </div>
-</div>
-
-<div>
-  <div>
-    <p>
-      <%= pluralize(@booking.flights.distinct.count, "Flight") %>:
-    </p>
-  </div>
+<div class="flex flex-col border-black border-solid border-2 rounded px-2 p-4 bg-white">
   <div>
     <% @booking.flights.distinct.each do |flight| %>
       <%= render 'summary', flight: flight  %>
     <% end %>
+  </div>
+  <div> 
+    <br>
+    <h2 class="self-center text-center grow text-3xl">
+      <%= pluralize(@booking.passengers.count, "Passenger(s):") %>
+    </h2>
+    <div>
+      <ul>
+      <% @booking.passengers.each do |passenger| %>
+        <li class="text-2xl">
+          <div class="flex justify-between">
+            <%= passenger.name %>: 
+            <%= passenger.email %>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
   </div>
 </div>
