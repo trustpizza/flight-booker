@@ -1,5 +1,6 @@
-<%= form_with url: "bookings/new/", method: "get", class: "grid grow gap-0.5 px-2" do |f| %>
-  <h2 class="self-center text-xl font-bold">Available Flights: </h2>
+<h2 class="self-center text-center text-5xl font-bold">Outbound Flights from <%=@origin_airport[0]%> to <%=@destination_airport[0]%></h2>
+
+<%= form_with url: "bookings/new/", method: "get", class: "grid grow gap-0.5 px-2 w-screen" do |f| %>
 
   <%= f.hidden_field :passenger_count, :value => params[:passenger_count] %>
 

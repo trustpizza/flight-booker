@@ -1,6 +1,8 @@
 class FlightsController < ApplicationController
   def index
     @airport_options = Airport.all.map { |airport| [airport.location, airport.id] }
+    @origin_airport = @airport_options.first
+    @destination_airport = @airport_options.last
     return if search_params.empty?
 
     @booking_options = find_flights

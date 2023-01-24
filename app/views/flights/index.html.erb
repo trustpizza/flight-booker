@@ -1,13 +1,18 @@
-<div class="flex justify-center mt-24 items-center">
+<div class="flex justify-between mt-24 items-center w-screen px-16">
+  <div>
+    <h1 class="text-5xl font-bold mt-0 mb-6">E-Z Flights</h1>
+    <h6 class="text-xl">No Fuss, No Mess, One Way International Flight Finder</h6>
+  </div>
   <%= render 'search_form' %>
-
-  <div class="flex">
+</div>
+<div>
+   <div class="flex">
     <% if @booking_options %>
       <div class="grid flex-grow">
         <%= render 'results' %>
       </div>
     <% else %>
-      <!--<h2 class="self-center text-center grow text-4xl">No Available Flights</h2> -->
+     <h2 class="self-center text-center grow text-4xl">No Available Flights</h2>
     <% end %>
   </div>
 </div>
