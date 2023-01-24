@@ -4,8 +4,8 @@
             <%= f.label "Origin:", hidden: true %>
             <%= f.select(:origin_id,
                         @airport_options,
+                        {prompt: "From"},
                         class:"text-2xl",
-                        prompt: "From",
                         required: true)
                         %>
         </div>
@@ -14,7 +14,8 @@
             <%= f.label "Destination:", hidden: true %>
             <%= f.select :destination_id,
                         @airport_options,
-                        prompt: "To",
+                        {prompt: "To"},
+                        class:"text-2xl",
                         required: true
                          %>
         </div>
@@ -22,7 +23,7 @@
             <%= f.label "Passengers:",hidden: true %>
             <%= f.select :passenger_count,
                         [1, 2, 3, 4],
-                        prompt: "Passengers",
+                        {prompt: "Passengers"},
                         class:"text-2xl",
                         required: true  %>
         </div>
@@ -30,6 +31,7 @@
             <%= f.label "Date:", hidden: true %>
             <%= f.date_field :departure_date,
                             value: params[:departure_date],
+                            class:"text-2xl",
                             required: true,
                             placeholder: "dd/mm/yyyy" %>
         </div>
