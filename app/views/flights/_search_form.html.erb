@@ -1,34 +1,42 @@
-<%= form_with model: @flights, class: "grid grow gap-0.5", method: :get do |f| %>
-    <div class="flex justify-between items-center">
-        <%= f.label "Origin:", class: "text-xl font-extrabold" %>
-        <%= f.select(:origin_id,
-                 options_for_select(@airport_options, params[:origin_id]),
-                 required: true ) %>    
-    </div>
+<%= form_with model: @flights, class: "flex justify-center items-stretch gap-2 flex-col", method: :get do |f| %>
+    <div class="flex gap-2">
+        <div class="flex justify-between items-center">
+            <%= f.label "Origin:", hidden: true %>
+            <%= f.select(:origin_id,
+                        @airport_options,
+                        class:"text-2xl",
+                        prompt: "From",
+                        required: true)
+                        %>
+        </div>
         
-    <div class="flex justify-between items-center">
-        <%= f.label "Destination:", class: "text-xl font-extrabold" %>
-        <%= f.select(:destination_id,
-                    options_for_select(@airport_options, params[:destination_id]),
-                    required: true ) %>
-    </div>
-
-    <div class="flex justify-between items-center">
-        <%= f.label "Passengers:", class: "text-xl font-extrabold" %>
-        <%= f.select(:passenger_count,
-                    options_for_select([1, 2, 3, 4], params[:passenger_count]),
-                    required: true ) %>
-    </div>
-
-    <div class="flex justify-between items-center">
-        <%= f.label "Date:", class: "text-xl font-extrabold" %>
-        <%= f.date_field :departure_date,
-                        value: params[:departure_date],
+        <div class="flex justify-between items-center">
+            <%= f.label "Destination:", hidden: true %>
+            <%= f.select :destination_id,
+                        @airport_options,
+                        prompt: "To",
                         required: true,
-                        placeholder: "dd/mm/yyyy" %>
+                        class: "text-2xl"
+                         %>
+        </div>
+        <div class="flex justify-between items-center">
+            <%= f.label "Passengers:",hidden: true %>
+            <%= f.select :passenger_count,
+                        [1, 2, 3, 4],
+                        prompt: "Passengers",
+                        class:"text-2xl",
+                        required: true  %>
+        </div>
+        <div class="flex justify-between items-center">
+            <%= f.label "Date:", hidden: true %>
+            <%= f.date_field :departure_date,
+                            value: params[:departure_date],
+                            required: true,
+                            placeholder: "dd/mm/yyyy" %>
+        </div>
     </div>
 
-    <div class="flex justify-end items-center">
-        <%= f.submit "Find Flights", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py02 px-4 rounded border border-black" %>
+    <div class="flex flex-col items-stretch">
+        <%= f.submit "Find Flights", class: "bg-blue-500 hover:bg-blue-700 text-white font-extrabold py02 px-4 rounded border border-black text-4xl" %>
     </div>
 <% end %>
