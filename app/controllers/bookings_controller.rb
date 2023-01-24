@@ -10,11 +10,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new(passenger_params)
     @flights = find_flights(params[:booking][:booking_option])
     create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
+    @url = bookings_path(@booking.id)
 
     respond_to do |format|
       if @booking.save 
         @booking.passengers.each do |passenger|
-          PassengerMailer.with(passenger: passenger, booking: @booking).confirmation_email.deliver_now
+          PassengerMailer.with(passenger: passenger, booking: @booking, url: bookings_path(@booking.id)).confirmation_email.deliver_now
         end
         format.html { redirect_to booking_url(@booking) }
       else

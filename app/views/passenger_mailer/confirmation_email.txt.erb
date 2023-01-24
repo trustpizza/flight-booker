@@ -1,3 +1,6 @@
-Your Booking has been Confirmed! 
+Your Booking has been Confirmed!
+
+Booking Number: <%= @booking.id %>
+Flight Number: <%= @booking.flights.first.id %>
 Thanks for booking <%= @passenger.name %>
-See your booking here <%= @url %>
+See your booking here <%= root_url %>

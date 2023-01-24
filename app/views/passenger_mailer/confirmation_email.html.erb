@@ -8,7 +8,9 @@
 </head>
 <body>
   <h1>Your Booking has been Confirmed! </h1> <br>
-  <div> Thanks for booking <%= @passenger.name %> </div> <br>
-  <div>See your booking here <%= @url %></div>
+  <div>Booking Number: <%= @booking.id %> </div>
+  <div>Flight Number: <%= @booking.flights.first.id %></div>
+  <div>Thanks for booking <%= @passenger.name %></div>
+  <div>See your booking here: <%= @url%></div>
 </body>
 </html>
